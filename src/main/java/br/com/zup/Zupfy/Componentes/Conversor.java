@@ -1,2 +1,13 @@
-package br.com.zup.Zupfy.Componentes;public class Conversor {
+package br.com.zup.Zupfy.Componentes;
+
+import org.modelmapper.ModelMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
+
+@Component
+public class Conversor {
+    @Bean
+    public ModelMapper modelMapper(){
+        return new ModelMapper();
+    }
 }
