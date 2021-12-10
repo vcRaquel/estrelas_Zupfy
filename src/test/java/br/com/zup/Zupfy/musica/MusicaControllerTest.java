@@ -1,5 +1,6 @@
 package br.com.zup.Zupfy.musica;
 
+import br.com.zup.Zupfy.Componentes.Conversor;
 import br.com.zup.Zupfy.enuns.Estilo;
 import br.com.zup.Zupfy.musica.dtos.MusicaCadastroDTO;
 import br.com.zup.Zupfy.musica.dtos.MusicaDetalhesDTO;
@@ -9,10 +10,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -21,10 +24,11 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.util.Arrays;
 import java.util.List;
 
-@WebMvcTest(MusicaController.class)
+@WebMvcTest({MusicaController.class, Conversor.class})
 public class MusicaControllerTest {
     @MockBean
     private MusicaService musicaService;
+
 
     @Autowired
     private MockMvc mockMvc;
