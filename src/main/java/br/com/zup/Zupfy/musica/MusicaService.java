@@ -12,7 +12,6 @@ public class MusicaService {
     private MusicaRepository musicaRepository;
 
     public Musica cadastrarMusica(Musica musica){
-        musica.setDataDeCadastro(LocalDate.now());
         return musica;
     }
 
