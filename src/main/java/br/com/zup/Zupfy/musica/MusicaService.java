@@ -1,5 +1,6 @@
 package br.com.zup.Zupfy.musica;
 
+import br.com.zup.Zupfy.musica.exceptions.MusicaNaoEcontradaExeception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,11 +13,18 @@ public class MusicaService {
     private MusicaRepository musicaRepository;
 
     public Musica cadastrarMusica(Musica musica){
+        musica.setDataDeCadastro(LocalDate.now());
+        musicaRepository.save(musica);
+
         return musica;
     }
 
     public void deletarMusica(int id){
-
+        if (!musicaRepository.existsById(id)){
+            throw new MusicaNaoEcontradaExeception("Musica não encontrada");
+        }else{
+            musicaRepository.deleteById(id);
+        }
     }
 
     public Musica atualizarMusica(Musica musica){
